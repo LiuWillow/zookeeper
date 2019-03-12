@@ -443,9 +443,10 @@ public class ZooKeeper {
                 + " sessionTimeout=" + sessionTimeout + " watcher=" + watcher);
 
         watchManager.defaultWatcher = watcher;
-
+        //把地址信息包装成一个类
         ConnectStringParser connectStringParser = new ConnectStringParser(
                 connectString);
+        //把地址到列表中，打乱顺序
         HostProvider hostProvider = new StaticHostProvider(
                 connectStringParser.getServerAddresses());
         cnxn = new ClientCnxn(connectStringParser.getChrootPath(),
@@ -1845,6 +1846,7 @@ public class ZooKeeper {
             clientCnxnSocketName = ClientCnxnSocketNIO.class.getName();
         }
         try {
+            //实例化一个ClientCnxnSocketNIO类作为ClientCnxnSocket
             return (ClientCnxnSocket) Class.forName(clientCnxnSocketName).getDeclaredConstructor()
                     .newInstance();
         } catch (Exception e) {

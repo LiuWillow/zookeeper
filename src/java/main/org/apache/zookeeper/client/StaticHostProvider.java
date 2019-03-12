@@ -99,8 +99,9 @@ public final class StaticHostProvider implements HostProvider {
             throw new IllegalArgumentException(
                     "A HostProvider may not be empty!");
         }
-
+        //地址放进去
         this.serverAddresses.addAll(serverAddresses);
+        //打乱顺序
         Collections.shuffle(this.serverAddresses);
     }
 
